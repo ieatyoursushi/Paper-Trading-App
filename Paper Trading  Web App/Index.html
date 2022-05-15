@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="StyleSheet.css" />
+</head>
+<body>
+    <nav class="Tabs">
+        <ul>
+            <li class="mainTab" data-main-tab="#AccountTab"> Account </li>
+            <li class="mainTab" data-main-tab="#WatchlistTab"> Watchlist </li>
+            <li class="mainTab" data-main-tab="#TradeTab"> Trade </li>
+            <li class="mainTab" data-main-tab="#MarketsTab"> Markets </li>
+            <li class="mainTab" data-main-tab="#EducationTab"> Education </li>
+            <li class="mainTab" data-main-tab="#ChatTab"> Chatroom </li>
+        </ul>
+        <input id="searchbar" type="search" placeholder="🔍 Ticker" onchange="returnQuote()" />
+    </nav>
+
+    <div class="webApp" id="MarketsTab">
+        <!-- Market Index Tab -->
+        <div class="Markets">
+            <h3 id="marketTitle"> US Markets </h3>
+            <div class="index" id="djia">
+                <header>
+                    <h3 class="indexTitle"> DJIA </h3>
+                    <h3 class="indexTitle DIA"> null </h3>
+                </header>
+
+                <canvas class="chart" id="DIAChart">
+
+                </canvas>
+            </div>
+            <div class="index" id="spy">
+                <header>
+                    <h3 class="indexTitle"> S&P 500 </h3>
+                    <h3 class="indexTitle SPY"> null </h3>
+                </header>
+                <canvas class="chart" id="SPYChart"></canvas>
+            </div>
+            <div class="index" id="nasdaq">
+                <header>
+                    <h3 class="indexTitle"> NASDAQ </h3>
+                    <h3 class="indexTitle QQQ"> null </h3>
+                </header>
+                <canvas class="chart" id="QQQChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Sectors Tab-->
+
+        <div class="Sectors">
+            <h3 id="sectorTitle"> Sectors </h3>
+        </div>
+
+        <!-- Movers Tab-->
+
+        <div class="Movers">
+            <h3 id="moverTitle"> Movers </h3>
+            <div class="Container">
+                <header class="moverTabs">
+                    <button data-tab-target="#gainers"> GAINERS </button>
+                    <button data-tab-target="#losers"> LOSERS </button>
+                    <button data-tab-target="#otc"> OPTIONS </button>
+                </header>
+                <h4 style="margin-bottom: 8px; margin-left: 5px;"> NYSE </h4>
+                <div class="scroll">
+                    <div class="moverContent" id="gainers">
+
+                    </div>
+                    <div class="moverContent" id="losers">
+
+                    </div>
+                </div>
+
+                <div class="moverContent" id="otc">
+                    <h4 style="margin: 10px;"> expired </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="webApp" id="WatchlistTab">
+
+    </div>
+
+    <div class="webApp" id="TradeTab">
+        <h1> Buy Sell </h1>
+    </div>
+
+    <div class="webApp" id="EducationTab">
+
+    </div>
+
+    <div class="webApp" id="ChatTab">
+        <h1> global chat </h1>
+    </div>
+
+    <div class="webApp" id="AccountTab">
+    </div>
+
+    <div class="modal" id="accountModal">
+        <div class="account" id="Account_Header" onclick="clickTaab();">
+            <h4> $219,020.01 <span> + $921.40 (0.44%) </span> </h4>
+        </div>
+    </div>
+    <div class="modal" id="tradeModal" onclick="changeClass('#tradeModal', 'moveUpp', 'toggle')">
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <script src="api.js"></script>
+    <script type="module" src="Sectors.js" defer></script>
+    <script src="tabs.js"></script>
+    <script type="module" src="movers.js" defer></script>
+    <script type="module" src="ColorAlgorithm.js" defer></script>
+</body>
+</html>

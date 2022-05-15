@@ -1,0 +1,48 @@
+﻿[
+  [
+    {
+      "sector": "Materials",
+      "changesPercentage": "-1.3548%"
+    },
+    {
+      "sector": "Communication Services",
+      "changesPercentage": "-2.2441%"
+    },
+    {
+      "sector": "Consumer Cyclical",
+      "changesPercentage": "-2.4892%"
+    },
+    {
+      "sector": "Consumer Defensive",
+      "changesPercentage": "-1.3821%"
+    },
+    {
+      "sector": "Energy",
+      "changesPercentage": "-2.5926%"
+    },
+    {
+      "sector": "Financials",
+      "changesPercentage": "-1.2184%"
+    },
+    {
+      "sector": "Health Care",
+      "changesPercentage": "-2.1759%"
+    },
+    {
+      "sector": "Industrials",
+      "changesPercentage": "-2.0673%"
+    },
+    {
+      "sector": "Real Estate",
+      "changesPercentage": "-2.3262%"
+    },
+    {
+      "sector": "Information Technology",
+      "changesPercentage": "-2.5964%"
+    },
+    {
+      "sector": "Utilities",
+      "changesPercentage": "-2.2477%"
+    }
+  ]
+]

@@ -1,0 +1,213 @@
+﻿[
+  {
+    "symbol": "SIDU",
+    "name": "Sidus Space, Inc.",
+    "change": 1.1104,
+    "price": 3.0804,
+    "changesPercentage": 56.36548
+  },
+  {
+    "symbol": "BBIG",
+    "name": "Vinco Ventures, Inc.",
+    "change": 0.67,
+    "price": 3.24,
+    "changesPercentage": 26.070044
+  },
+  {
+    "symbol": "NVCT",
+    "name": "Nuvectis Pharma, Inc.",
+    "change": 3.285,
+    "price": 17.265,
+    "changesPercentage": 23.497854
+  },
+  {
+    "symbol": "FNKO",
+    "name": "Funko, Inc.",
+    "change": 3.87,
+    "price": 20.59,
+    "changesPercentage": 23.145939
+  },
+  {
+    "symbol": "SWVL",
+    "name": "Swvl Holdings Corp.",
+    "change": 1.3701,
+    "price": 7.4001,
+    "changesPercentage": 22.721394
+  },
+  {
+    "symbol": "CETXP",
+    "name": "Cemtrex, Inc.",
+    "change": 0.39,
+    "price": 2.21,
+    "changesPercentage": 21.42857
+  },
+  {
+    "symbol": "HGEN",
+    "name": "Humanigen, Inc.",
+    "change": 0.37,
+    "price": 2.21,
+    "changesPercentage": 20.108696
+  },
+  {
+    "symbol": "SKYH",
+    "name": "Sky Harbour Group Corporation",
+    "change": 1.25,
+    "price": 7.49,
+    "changesPercentage": 20.032051
+  },
+  {
+    "symbol": "VAXX",
+    "name": "Vaxxinity, Inc.",
+    "change": 1.04,
+    "price": 6.45,
+    "changesPercentage": 19.22366
+  },
+  {
+    "symbol": "SPRO",
+    "name": "Spero Therapeutics, Inc.",
+    "change": 0.34,
+    "price": 2.18,
+    "changesPercentage": 18.478262
+  },
+  {
+    "symbol": "QUBT",
+    "name": "Quantum Computing, Inc.",
+    "change": 0.31,
+    "price": 1.99,
+    "changesPercentage": 18.452385
+  },
+  {
+    "symbol": "BOOM",
+    "name": "DMC Global Inc.",
+    "change": 3.81,
+    "price": 25.11,
+    "changesPercentage": 17.887331
+  },
+  {
+    "symbol": "IKNA",
+    "name": "Ikena Oncology, Inc.",
+    "change": 0.68,
+    "price": 4.85,
+    "changesPercentage": 16.30695
+  },
+  {
+    "symbol": "STEM",
+    "name": "Stem, Inc.",
+    "change": 1.23,
+    "price": 8.87,
+    "changesPercentage": 16.099476
+  },
+  {
+    "symbol": "CO",
+    "name": "Global Cord Blood Corporation",
+    "change": 0.35,
+    "price": 2.55,
+    "changesPercentage": 15.909086
+  },
+  {
+    "symbol": "UDMY",
+    "name": "Udemy, Inc.",
+    "change": 1.63,
+    "price": 12.38,
+    "changesPercentage": 15.162791
+  },
+  {
+    "symbol": "JNCE",
+    "name": "Jounce Therapeutics, Inc.",
+    "change": 0.73,
+    "price": 5.59,
+    "changesPercentage": 15.020576
+  },
+  {
+    "symbol": "TRHC",
+    "name": "Tabula Rasa HealthCare, Inc.",
+    "change": 0.48,
+    "price": 3.7,
+    "changesPercentage": 14.906832
+  },
+  {
+    "symbol": "BRBR",
+    "name": "BellRing Brands, Inc.",
+    "change": 3.06,
+    "price": 23.92,
+    "changesPercentage": 14.66922
+  },
+  {
+    "symbol": "CZOO",
+    "name": "Cazoo Group Ltd",
+    "change": 0.165,
+    "price": 1.305,
+    "changesPercentage": 14.473681
+  },
+  {
+    "symbol": "CCXI",
+    "name": "ChemoCentryx, Inc.",
+    "change": 2.22,
+    "price": 17.86,
+    "changesPercentage": 14.194375
+  },
+  {
+    "symbol": "MTR",
+    "name": "Mesa Royalty Trust",
+    "change": 1.79,
+    "price": 14.82,
+    "changesPercentage": 13.737529
+  },
+  {
+    "symbol": "AVDX",
+    "name": "AvidXchange Holdings, Inc.",
+    "change": 1.055,
+    "price": 8.785,
+    "changesPercentage": 13.648123
+  },
+  {
+    "symbol": "UNM",
+    "name": "Unum Group",
+    "change": 4.32,
+    "price": 36.23,
+    "changesPercentage": 13.5380745
+  },
+  {
+    "symbol": "LXEH",
+    "name": "Lixiang Education Holding Co., Ltd.",
+    "change": 0.49,
+    "price": 4.4,
+    "changesPercentage": 12.531969
+  },
+  {
+    "symbol": "CPS",
+    "name": "Cooper-Standard Holdings Inc.",
+    "change": 0.71,
+    "price": 6.41,
+    "changesPercentage": 12.4561405
+  },
+  {
+    "symbol": "OMGA",
+    "name": "Omega Therapeutics, Inc.",
+    "change": 0.4,
+    "price": 3.66,
+    "changesPercentage": 12.269941
+  },
+  {
+    "symbol": "CCM",
+    "name": "Concord Medical Services Holdings Limited",
+    "change": 0.16,
+    "price": 1.47,
+    "changesPercentage": 12.213747
+  },
+  {
+    "symbol": "HEAR",
+    "name": "Turtle Beach Corporation",
+    "change": 1.7,
+    "price": 16.51,
+    "changesPercentage": 11.478729
+  },
+  {
+    "symbol": "XOMA",
+    "name": "XOMA Corporation",
+    "change": 2.05,
+    "price": 19.94,
+    "changesPercentage": 11.458922
+  }
+]
+

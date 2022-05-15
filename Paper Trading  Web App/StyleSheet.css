@@ -1,0 +1,335 @@
+﻿:root {
+    --hoverTabBackground: #EAECED;
+    --hoverTabColor: darkgreen;
+
+    --tabBackground: #FEFEFE;
+    --tabColor: black;
+}
+*, html, body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    box-sizing:border-box;
+}
+ 
+.inActive {
+    display: none;
+}
+body {
+    background: #EAECED;
+
+    overflow-x: hidden;
+}
+nav {
+    background: #FEFEFE;
+    border-bottom: 2px solid rgb(148, 152, 152);
+    width: auto;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+nav .mainTab {
+    background: var(--tabBackground);
+    padding: 16px 30px;
+    font-size: 18px;
+    font-weight: 400;
+    color:var(--tabColor);
+    transition: font-size 0.2s, background 0.2s;
+    line-height: 18px;
+}
+.mainTabStyle {
+    background: grey;
+    padding: 16px 30px;
+    font-size: 18px;
+    font-weight: 400;
+    color: white;
+    transition: background 0.2s;
+    text-shadow: 0px 0px 0.5px white;
+    line-height: 18px;
+}
+.mainTabStyle:hover {
+    cursor: pointer;
+}
+nav .mainTab:hover{ 
+    color: var(--hoverTabColor);
+    text-shadow:0px 0px 0.5px darkgreen;
+    font-size: 19px;
+    cursor: pointer;
+    background: var(--hoverTabBackground);
+}
+ 
+nav input { 
+    margin-right: 50px;
+    padding: 4px;
+    float: right;
+    border-radius: 50px; 
+}
+span {
+    color: green;
+}
+ 
+.webApp {
+    width: 100%;
+    height: 870px;
+    outline: 2px solid darkgreen;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+.webApp::-webkit-scrollbar {
+    display: none;
+}
+.webApp div{
+    display: inline-block;
+ 
+}
+nav ul {
+    display: flex;
+    list-style-type: none;
+    margin-left: 50px;
+}
+#marketTitle {
+    margin-top: 5px;
+    margin-left: 8px;
+    font-weight: 600;
+}
+#sectorTitle {
+    margin-top: 5px;
+    margin-left: 0;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+.Markets {
+    display:flex;
+    margin-top: 5px;
+    margin-left: 12px;
+    float:left;
+    max-height: 100%;
+    width: 80%;
+}
+.index {
+    background: #FEFEFE;
+    height: 280px;
+    width: 375px;
+    margin: 18px 9px;
+    transition: width 0.4s, height 0.4s;
+}
+.index .indexTitle {
+    margin: 10px 20px 10px 20px;
+    font-weight: 600;
+}
+ 
+.index .price {
+    font-weight:500;
+}
+.index header {
+    display: flex;
+    height: auto;
+    outline: 2px solid;
+    align-items: center;
+    justify-content: space-between;
+}
+ 
+.index .priceChange h3 {
+      font-weight: 400;
+}
+.index .chart {
+    outline: 1px solid;
+    margin-top: 20px;
+    margin-left: 10px;
+    width: 94%;
+    height: 64.3%;
+}
+.Sectors {
+    display: flex;
+    justify-content: flex-start;
+    float: left;
+    height: auto;
+    width: auto;
+    max-width: 580px;
+    margin-right: 10px;
+    position: relative;
+    margin-top: 10px;
+    margin-left: 18px;
+    flex-wrap: wrap;
+}
+.spaceAround {
+    display: flex;
+}
+.Sectors .sector {
+    display: inline-block;
+    height: 59px;
+    width: 180px;
+    transition: width 0.4s, height 0.4s;
+    margin: 4px 6px 4px 5px;
+    background-color: #fefefe;
+    vertical-align: top;
+    border-bottom: 4px solid grey;
+}
+.sector h5 {
+    margin-left: 7px;
+    color: #989898;
+    font-weight: 200;
+    font-size: 14px;
+}
+.sector h4 {
+    color: grey;
+    margin-top: 10px;
+    margin-left: 8px;
+    font-size: 17px;
+}
+.Movers {
+    width: 500px;
+    margin-left: 10px;
+    margin-top: 10px;
+    overflow: hidden;
+    transition: width 0.4s;
+}
+.Movers .scroll {
+    width: 100%;
+    max-height: 205.5px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+ 
+.mover {
+    display: flex;
+    align-items: center;
+    height: 38px;
+    background: #FEFEFE;
+    outline: 1px solid grey;
+    margin: 3px 0px;
+}
+.mover .details {
+    margin-left: 20px;
+    font-weight: 500;
+
+}
+.Movers .moverTabs {
+    margin-bottom: 50px;
+}
+.Movers .Container {
+    width: 100%;
+    background: #FEFEFE;
+}
+.mover .color {
+    height: 100%;
+    width: 8px;
+    background: grey;
+    margin-right: 6px;
+}
+.Movers .moverContent {
+ 
+    width: 100%;
+}
+#amc {
+    background: green;
+}
+#moverTitle {
+    margin-top: 5px;
+    margin-left: 0;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+ 
+@media(max-width: 1500px) {
+    .Markets {
+        width: auto;
+    }
+}
+@media (max-width: 1250px) {
+    .Markets {
+        margin-top: 9px;
+    }
+    .index {
+        margin: 10px 9px;
+        height: 257.6px;
+        width: 345px;
+    }
+    .Sectors .sector {
+        height: 55px;
+        width: 170px;
+    }
+    .sector h5 {
+        font-size: 13.28px;
+    }
+
+    .sector h4 {
+        font-size: 16px;
+    }
+    .Movers {
+        width: 450px;
+        margin-bottom: 10px;
+    }
+}
+#accountModal {
+    position: relative;
+    z-index: 1;
+    height: 920px;
+    top: -30px;
+    transition: top 0.5s;
+    background: #fefefe;
+}
+#accountModal.moveUp {
+    position: relative;
+    transition: top 0.5s;
+    top: -870px;
+}
+.account h4 {
+    margin-left: 20px;
+    font-weight: 600;
+}
+.account {
+    outline: 2px solid green;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+    position: sticky;
+    background: #fefefe;
+}
+#tradeModal {
+    position: relative;
+    z-index: 2;
+    height: 920px;
+    top: -30px;
+    transition: top 0.5s;
+    outline: 2px solid;
+    background: #fefefe;
+}
+#tradeModal.moveUpp {
+    position: relative;
+    transition: 0.5s;
+    top: -1790px;
+}
+@media(max-width: 1090px) {
+    .Movers {
+        margin-left: 20px;
+    }
+}
+@media (max-width: 1000px) {
+    .webApp {
+        display: grid;
+    }
+    .Sectors {
+        margin-right: 0;
+        max-width: 450px;
+        width: auto;
+    }
+    .Movers .scroll {
+        max-height: 165px;
+    }
+ 
+}
+ 
+@media (max-width: 450px) {
+    .Tabs ul{
+        display: block;
+    }
+    .Tabs {
+        display: block;
+        height: auto;
+    }
+}
+ 
