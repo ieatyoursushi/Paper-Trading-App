@@ -73,7 +73,7 @@ function displayGraph(symbol) {
     const chart = document.getElementById(symbol + "Chart");
     console.log(chart);
 }
- 
+
 setTimeout(returnMarketQuote, 500);
 if (today != "Saturday" && today != "Sunday") {
     setInterval(returnMarketQuote, 5000);

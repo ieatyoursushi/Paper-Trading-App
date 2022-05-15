@@ -1,4 +1,4 @@
-﻿import { priceDirection } from '/ColorAlgorithm.js';
+﻿import { priceDirection } from '/ColorChanger.js';
 //naming convention
 const market = {
     gainers: 'gainers',

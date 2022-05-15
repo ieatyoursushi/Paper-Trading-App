@@ -1,4 +1,4 @@
-﻿import { priceDirection } from '/ColorAlgorithm.js';
+﻿import { priceDirection } from '/ColorChanger.js';
 import { format } from '/movers.js';
 const api = "https://financialmodelingprep.com/api/v3/sector-performance?apikey=69f8cb94503175678fe3194af1c9e734";
 let sectors = [];
