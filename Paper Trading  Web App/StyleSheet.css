@@ -126,7 +126,7 @@ nav ul {
 .index header {
     display: flex;
     height: auto;
-    outline: 2px solid;
+    outline: 1px solid;
     align-items: center;
     justify-content: space-between;
 }
@@ -135,11 +135,11 @@ nav ul {
       font-weight: 400;
 }
 .index .chart {
-    outline: 1px solid;
-    margin-top: 20px;
+    
+    margin-top: 18px;
     margin-left: 10px;
     width: 94%;
-    height: 64.3%;
+    height: 63.3%;
 }
 .Sectors {
     display: flex;

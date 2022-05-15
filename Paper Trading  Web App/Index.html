@@ -27,24 +27,27 @@
                     <h3 class="indexTitle"> DJIA </h3>
                     <h3 class="indexTitle DIA"> null </h3>
                 </header>
-
-                <canvas class="chart" id="DIAChart">
-                     
-                </canvas>
+                <div class="chart">
+                    <canvas id="DIAChart"></canvas>
+                </div>
             </div>
             <div class="index" id="spy">
                 <header>
                     <h3 class="indexTitle"> S&P 500 </h3>
                     <h3 class="indexTitle SPY"> null </h3>
                 </header>
-                <canvas class="chart" id="SPYChart"></canvas>
+                <div class="chart">
+                    <canvas id="SPYChart"></canvas>
+                </div>
             </div>
             <div class="index" id="nasdaq">
                 <header>
                     <h3 class="indexTitle"> NASDAQ </h3>
                     <h3 class="indexTitle QQQ"> null </h3>
                 </header>
-                <canvas class="chart" id="QQQChart"></canvas>
+                <div class="chart">
+                    <canvas id="QQQChart"></canvas>
+                </div>
             </div>
         </div>
 
@@ -109,7 +112,8 @@
     </div>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+    </script>
     <script src="api.js"></script>
     <script type="module" src="Sectors.js" defer></script>
     <script src="tabs.js"></script>

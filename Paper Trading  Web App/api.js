@@ -70,8 +70,29 @@ function displayIndexes(data) {
     })
 }
 function displayGraph(symbol) {
-    const chart = document.getElementById(symbol + "Chart");
+    const chart = document.getElementById(symbol + "Chart");    
     console.log(chart);
+
+    const labels = []
+    const price = [];
+
+    const data = {
+        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+        datasets: [{
+            label: symbol,
+            data: [65, 59, 80, 81, 56, 55, 40],
+            fill: true,
+            borderColor: 'rgb(50,205,50, 0.1)',
+            backgroundColor: 'rgb(50, 205, 50, 0.5)',
+            tension: 0,
+        }],
+  
+    };
+    let lineChart = new Chart(chart, {
+        type: 'line',
+        data: data,
+
+    })
 }
 
 setTimeout(returnMarketQuote, 500);
