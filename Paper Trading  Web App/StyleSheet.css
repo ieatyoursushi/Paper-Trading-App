@@ -135,7 +135,7 @@ nav ul {
       font-weight: 400;
 }
 .index .chart {
-    
+    outline: 1px solid gray;
     margin-top: 18px;
     margin-left: 10px;
     width: 94%;

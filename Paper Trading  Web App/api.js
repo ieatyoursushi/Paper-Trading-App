@@ -1,6 +1,6 @@
 ﻿const key = 'J8S17UJBIPF8KUXZ';
 const key2 = 'fbccd5f0-e34c-4802-b20d-0a7bb573b34e';
-
+import { format } from '/movers.js';
 function currentDay() {
     let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
     const date = new Date().getDay();
@@ -61,24 +61,32 @@ function displayIndexes(data) {
     marketQuotes.forEach((marketQuote) => {
         const index = document.querySelector("." + marketQuote.symbol)
         index.style.fontWeight = "400";
-        let indexPrice = Math.floor((data[marketQuote.symbol].bidPrice * marketQuote.multiplyer) * 100) / 100;
-        index.innerHTML = Number(indexPrice).toFixed(2);
-        displayGraph(marketQuote.symbol);
+        let indexPrice = format(data[marketQuote.symbol].bidPrice * marketQuote.multiplyer, false)
+        index.innerHTML = indexPrice;
     })
 }
+
 function displayGraph(symbol) {
     const chart = document.getElementById(symbol + "Chart");    
     console.log(chart);
     let labels = [];
     let price = [];
 
-    let priceHistory = new Stock(symbol).historicalChart(interval.oneMin);
+    let priceHistory = new Stock(symbol).historicalChart(interval.fiveMin);
     priceHistory.then(data => {
-        for (let i = 0; i < 390; i++) {
-            labels.push(data[i].date);
-            price.push(data[i].close);
+        console.log(priceHistory);
+        if (price.length > 0) {
+            price = [];
+            labels = [];
         }
-    }).then( ()=> {
+        for (let i = 78; i >= 0; i--) {
+            let time = data[i].date;
+            //time = time.substring(10);
+            labels.push(time);
+            let multiplyer = marketQuotes.find(item => item.symbol === symbol).multiplyer;
+            price.push(format(data[i].close * multiplyer));
+        }
+    }).then(() => {
         const data = {
             labels: labels,
             datasets: [{
@@ -89,27 +97,34 @@ function displayGraph(symbol) {
                 backgroundColor: 'rgb(50, 205, 50, 0.5)',
                 tension: 0,
             }],
-            options: {
-                scales: {
-                    xAxes: [{
-                        ticks: {
-                            display: false
-                        }
-                    }]
-                }
-            }
         };
+        let options = {
+            scales: {
+                x: {
+                    display: false,
+                }
+            },
+            tooltips: {
+                mode: 'label'
+            },
+        }
         let lineChart = new Chart(chart, {
             type: 'line',
             data: data,
+            options: options
         })
-    })
- 
-}
 
+    })
+}
+setTimeout(function () {
+    marketQuotes.forEach(symbol => {
+        displayGraph(symbol.symbol);
+    })
+}, 500)
 setTimeout(returnMarketQuote, 500);
 if (today != "Saturday" && today != "Sunday") {
     setInterval(returnMarketQuote, 5000);
+    
 } 
 
 function returnQuote() {
