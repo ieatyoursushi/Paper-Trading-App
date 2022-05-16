@@ -1,4 +1,6 @@
 ﻿import { priceDirection } from '/ColorChanger.js';
+import { currentDay } from '/api.js';
+const today = currentDay();
 //naming convention
 const market = {
     gainers: 'gainers',
@@ -84,4 +86,6 @@ function getMovers() {
     bearish.fetchData();
 }
 window.setTimeout(getMovers, 500);
-window.setInterval(getMovers, 300000)
+if (today != "Saturday" && today != "Sunday") {
+    window.setInterval(getMovers, 300000)
+} 

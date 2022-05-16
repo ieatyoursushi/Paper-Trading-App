@@ -1,5 +1,7 @@
 ﻿import { priceDirection } from '/ColorChanger.js';
 import { format } from '/movers.js';
+import { currentDay } from '/api.js';
+const today = currentDay();
 const api = "https://financialmodelingprep.com/api/v3/sector-performance?apikey=69f8cb94503175678fe3194af1c9e734";
 let sectors = [];
 const Sectors = document.querySelector(".Sectors")
@@ -54,7 +56,10 @@ function createElements(data) {
     elementsCreated = true;
 }
 window.setTimeout(getSectors, 500);
-window.setInterval(getSectors, 600000);
+if (today != "Saturday" && today != "Sunday") {
+    window.setInterval(getSectors, 300000);
+} 
+ 
 
 
 

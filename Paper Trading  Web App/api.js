@@ -6,6 +6,7 @@ function currentDay() {
     const date = new Date().getDay();
     return days[date];
 }
+export {currentDay}
 const today = currentDay();
 console.log(today);
 
@@ -44,14 +45,10 @@ class Stock {
         return data;
     }
 }
-let aapl = new Stock("aapl").historicalChart(interval.oneMin);
-aapl.then(data => {
-    console.log(data);
-})
+ 
 //constant 
 function returnMarketQuote() {
     //td ameritrade data
-    indexData = []
     fetch("https://api.tdameritrade.com/v1/marketdata/quotes?apikey=DWJMYBQYEAPPGOAVBAASYIUI7IXPDKPL&symbol=SPY%2CQQQ%2CDIA")
         .then((response) => {
             return response.json();
@@ -72,27 +69,42 @@ function displayIndexes(data) {
 function displayGraph(symbol) {
     const chart = document.getElementById(symbol + "Chart");    
     console.log(chart);
+    let labels = [];
+    let price = [];
 
-    const labels = []
-    const price = [];
-
-    const data = {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
-        datasets: [{
-            label: symbol,
-            data: [65, 59, 80, 81, 56, 55, 40],
-            fill: true,
-            borderColor: 'rgb(50,205,50, 0.1)',
-            backgroundColor: 'rgb(50, 205, 50, 0.5)',
-            tension: 0,
-        }],
-  
-    };
-    let lineChart = new Chart(chart, {
-        type: 'line',
-        data: data,
-
+    let priceHistory = new Stock(symbol).historicalChart(interval.oneMin);
+    priceHistory.then(data => {
+        for (let i = 0; i < 390; i++) {
+            labels.push(data[i].date);
+            price.push(data[i].close);
+        }
+    }).then( ()=> {
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: symbol,
+                data: price,
+                fill: true,
+                borderColor: 'rgb(211, 211, 211)',
+                backgroundColor: 'rgb(50, 205, 50, 0.5)',
+                tension: 0,
+            }],
+            options: {
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            display: false
+                        }
+                    }]
+                }
+            }
+        };
+        let lineChart = new Chart(chart, {
+            type: 'line',
+            data: data,
+        })
     })
+ 
 }
 
 setTimeout(returnMarketQuote, 500);
