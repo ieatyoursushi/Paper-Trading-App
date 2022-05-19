@@ -6,14 +6,20 @@ function currentDay() {
     const date = new Date().getDay();
     return days[date];
 }
-export {currentDay}
+export { currentDay }
 const today = currentDay();
 console.log(today);
+function cleanMessage(message) {
+    let cleanedMessage = message.split(' ');
+    cleanedMessage.splice(1, 1);
+    cleanedMessage = cleanedMessage.join(' ');
+    return cleanedMessage;
+}
 
 let marketQuotes = [
-    { symbol: 'QQQ', multiplyer: '39.27'},
-    { symbol: 'SPY', multiplyer: '10.026'},
-    { symbol: 'DIA', multiplyer: '100.02'},
+    { symbol: 'QQQ', multiplyer: '1'},
+    { symbol: 'SPY', multiplyer: '1'},
+    { symbol: 'DIA', multiplyer: '1'},
 ]
 const interval = {
     oneMin: '1min/',
@@ -61,32 +67,94 @@ function displayIndexes(data) {
     marketQuotes.forEach((marketQuote) => {
         const index = document.querySelector("." + marketQuote.symbol)
         index.style.fontWeight = "400";
-        let indexPrice = format(data[marketQuote.symbol].bidPrice * marketQuote.multiplyer, false)
+        let indexPrice = format(data[marketQuote.symbol].mark * marketQuote.multiplyer, false)
         index.innerHTML = indexPrice;
+        let priceHistory = new Stock(marketQuote.symbol).historicalChart(interval.fiveMin);
+        priceHistory.then(data => {
+            let dates = [];
+            if (dates.length > 0) {
+                dates = []
+            }
+            let lastUpdatedDate = cleanMessage(data[0].date)
+            console.log('last updated date: ' + lastUpdatedDate);
+            for (let i = 0; i < data.length; i++) {
+                let timeDate = cleanMessage(data[i].date);
+                if (timeDate === lastUpdatedDate) {
+                    dates.push(timeDate);
+                } else {
+                    break;
+                }
+            }
+            console.log(dates);
+            let multiplyer = marketQuotes.find(item => item.symbol === marketQuote.symbol).multiplyer;
+            let yesterdaysClosePrice = data[dates.length].close * multiplyer;
+            console.log(yesterdaysClosePrice);
+            let priceChange = indexPrice - yesterdaysClosePrice;
+            let purePercentage = indexPrice / yesterdaysClosePrice - 1;
+            let percentageChange = '(' + format(purePercentage * 100, true) + '%)';
+            console.log(percentageChange);
+            let changeText = document.querySelector("." + marketQuote.symbol + "change")
+            changeText.innerHTML = format(priceChange, true) +" " + percentageChange ;
+        })
     })
 }
+ 
 
-function displayGraph(symbol) {
+function displayGraph(symbol, interval) {
     const chart = document.getElementById(symbol + "Chart");    
     console.log(chart);
     let labels = [];
     let price = [];
-
-    let priceHistory = new Stock(symbol).historicalChart(interval.fiveMin);
+    let chartArea = {
+        fill: 'start',
+        backgroundColor: 'rgb(20, 205, 50, 0.5)',
+    }
+    let priceHistory = new Stock(symbol).historicalChart(interval);
     priceHistory.then(data => {
-        console.log(priceHistory);
+ 
+        console.log(data);
+        let dates = []
         if (price.length > 0) {
             price = [];
             labels = [];
+            dates = [];
         }
-        for (let i = 78; i >= 0; i--) {
+        let lastUpdatedDate = cleanMessage(data[0].date)
+        console.log('last updated date: ' + lastUpdatedDate);
+        for (let i = 0; i < data.length; i++) {
+            let timeDate = cleanMessage(data[i].date);
+            if (timeDate === lastUpdatedDate) {
+                dates.push(timeDate);
+            } else {
+                break;
+            }
+        }
+        console.log(dates);
+        let multiplyer = marketQuotes.find(item => item.symbol === symbol).multiplyer;
+        let yesterdaysCloseDate = data[dates.length].date;
+        let yesterdaysClosePrice = data[dates.length].close * multiplyer;
+        console.log('yesterdays close: ' + yesterdaysCloseDate + ' closing price: ' + yesterdaysClosePrice);
+        // datapoints
+        for (let i = dates.length - 1; i >= 0; i--) {
             let time = data[i].date;
-            //time = time.substring(10);
             labels.push(time);
-            let multiplyer = marketQuotes.find(item => item.symbol === symbol).multiplyer;
             price.push(format(data[i].close * multiplyer));
         }
+        let currentPrice = data[0].close * multiplyer;
+        console.log('current price:' + currentPrice);
+
+        if (currentPrice < yesterdaysClosePrice) {
+            chartArea.fill = 'end';
+            chartArea.backgroundColor = 'rgb(255, 0, 0, 0.5)';
+        } else {
+            fill: 'start';
+            backgroundColor: 'rgb(20, 205, 50, 0.5)';
+        }
     }).then(() => {
+        let chartStatus = Chart.getChart(chart);
+        if (chartStatus != undefined) {
+            chartStatus.destroy();
+        }
         const data = {
             labels: labels,
             datasets: [{
@@ -94,7 +162,8 @@ function displayGraph(symbol) {
                 data: price,
                 fill: true,
                 borderColor: 'rgb(211, 211, 211)',
-                backgroundColor: 'rgb(50, 205, 50, 0.5)',
+                backgroundColor: chartArea.backgroundColor,
+                fill: chartArea.fill,
                 tension: 0,
             }],
         };
@@ -113,17 +182,23 @@ function displayGraph(symbol) {
             data: data,
             options: options
         })
-
     })
 }
 setTimeout(function () {
     marketQuotes.forEach(symbol => {
-        displayGraph(symbol.symbol);
+        displayGraph(symbol.symbol, interval.fiveMin);
     })
 }, 500)
 setTimeout(returnMarketQuote, 500);
+
 if (today != "Saturday" && today != "Sunday") {
     setInterval(returnMarketQuote, 5000);
+    setInterval(function () {
+        marketQuotes.forEach(symbol => {
+            displayGraph(symbol.symbol, interval.fiveMin);
+            console.log("interval");
+        })
+    }, 300000)
     
 } 
 

@@ -130,7 +130,12 @@ nav ul {
     align-items: center;
     justify-content: space-between;
 }
- 
+.index .changeTitle {
+    margin: 10px 16px 10px 20px;
+    font-weight: 400;
+    color: red;
+    font-size: 16.5px;
+}
 .index .priceChange h3 {
       font-weight: 400;
 }
