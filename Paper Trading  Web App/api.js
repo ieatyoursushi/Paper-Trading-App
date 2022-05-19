@@ -17,9 +17,9 @@ function cleanMessage(message) {
 }
 
 let marketQuotes = [
-    { symbol: 'QQQ', multiplyer: '1'},
-    { symbol: 'SPY', multiplyer: '1'},
-    { symbol: 'DIA', multiplyer: '1'},
+    { symbol: 'QQQ', multiplyer: '1', index: '^IXIC', num: 2},
+    { symbol: 'SPY', multiplyer: '1', index: '^GSPC', num: 1},
+    { symbol: 'DIA', multiplyer: '1', index: '^DJI', num: 0},
 ]
 const interval = {
     oneMin: '1min/',
@@ -55,7 +55,7 @@ class Stock {
 //constant 
 function returnMarketQuote() {
     //td ameritrade data
-    fetch("https://api.tdameritrade.com/v1/marketdata/quotes?apikey=DWJMYBQYEAPPGOAVBAASYIUI7IXPDKPL&symbol=SPY%2CQQQ%2CDIA")
+    fetch("https://financialmodelingprep.com/api/v3/quote/%5EGSPC,%5EIXIC,%5EDJI?apikey=69f8cb94503175678fe3194af1c9e734")
         .then((response) => {
             return response.json();
         }).then((data) => {
@@ -67,35 +67,23 @@ function displayIndexes(data) {
     marketQuotes.forEach((marketQuote) => {
         const index = document.querySelector("." + marketQuote.symbol)
         index.style.fontWeight = "400";
-        let indexPrice = format(data[marketQuote.symbol].mark * marketQuote.multiplyer, false)
+        console.log(marketQuote);
+        let indexPrice = format(data[marketQuote.num].price * marketQuote.multiplyer, false)
         index.innerHTML = indexPrice;
-        let priceHistory = new Stock(marketQuote.symbol).historicalChart(interval.fiveMin);
-        priceHistory.then(data => {
-            let dates = [];
-            if (dates.length > 0) {
-                dates = []
+        let multiplyer = marketQuotes.find(item => item.symbol === marketQuote.symbol).multiplyer;
+        let previousClose = data[marketQuote.num].previousClose;
+        let priceChange = data[marketQuote.num].change;
+        let purePercentage = data[marketQuote.num].changesPercentage;
+        let percentageChange = '(' + format(purePercentage, true) + '%)';
+        console.log(percentageChange);
+        let changeText = document.querySelector("." + marketQuote.symbol + "change")
+        changeText.innerHTML = format(priceChange, true) + " " + percentageChange;
+        if (indexPrice > previousClose) {
+                changeText.style.color = "#4EB849";
+            } else {
+                changeText.style.color = "rgb(255, 0, 0)";
             }
-            let lastUpdatedDate = cleanMessage(data[0].date)
-            console.log('last updated date: ' + lastUpdatedDate);
-            for (let i = 0; i < data.length; i++) {
-                let timeDate = cleanMessage(data[i].date);
-                if (timeDate === lastUpdatedDate) {
-                    dates.push(timeDate);
-                } else {
-                    break;
-                }
-            }
-            console.log(dates);
-            let multiplyer = marketQuotes.find(item => item.symbol === marketQuote.symbol).multiplyer;
-            let yesterdaysClosePrice = data[dates.length].close * multiplyer;
-            console.log(yesterdaysClosePrice);
-            let priceChange = indexPrice - yesterdaysClosePrice;
-            let purePercentage = indexPrice / yesterdaysClosePrice - 1;
-            let percentageChange = '(' + format(purePercentage * 100, true) + '%)';
-            console.log(percentageChange);
-            let changeText = document.querySelector("." + marketQuote.symbol + "change")
-            changeText.innerHTML = format(priceChange, true) +" " + percentageChange ;
-        })
+        
     })
 }
  
@@ -129,8 +117,9 @@ function displayGraph(symbol, interval) {
                 break;
             }
         }
+ 
         console.log(dates);
-        let multiplyer = marketQuotes.find(item => item.symbol === symbol).multiplyer;
+        let multiplyer = 1;
         let yesterdaysCloseDate = data[dates.length].date;
         let yesterdaysClosePrice = data[dates.length].close * multiplyer;
         console.log('yesterdays close: ' + yesterdaysCloseDate + ' closing price: ' + yesterdaysClosePrice);
@@ -186,7 +175,7 @@ function displayGraph(symbol, interval) {
 }
 setTimeout(function () {
     marketQuotes.forEach(symbol => {
-        displayGraph(symbol.symbol, interval.fiveMin);
+        displayGraph(symbol.index, interval.fiveMin);
     })
 }, 500)
 setTimeout(returnMarketQuote, 500);
