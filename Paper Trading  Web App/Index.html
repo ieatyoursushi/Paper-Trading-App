@@ -15,7 +15,7 @@
             <li class="mainTab" data-main-tab="#EducationTab"> Education </li>
             <li class="mainTab" data-main-tab="#ChatTab"> Chatroom </li>
         </ul>
-        <input id="searchbar" type="search" placeholder="🔍 Ticker" onchange="returnQuote()" />
+        <input id="searchbar" type="search" placeholder="🔍 Ticker" />
     </nav>
 
     <div class="webApp" id="MarketsTab">
@@ -116,13 +116,29 @@
             <h4> $219,020.01 <span> + $921.40 (0.44%) </span> </h4>
         </div>
     </div>
-    <div class="modal" id="tradeModal" onclick="changeClass('#tradeModal', 'moveUpp', 'toggle')">
 
+    <div class="modal" id="tradeModal">
+        <div class="quoteTitle">
+            <h3> </h3>
+            <h4></h4>
+            <buttton class="exit" onclick="changeClass('#tradeModal', 'moveUpp', 'toggle');"> X </buttton>
+        </div>
+        <div class="quotePrice">
+            <h1> Price: </h1>
+        </div>
+        <div class="quoteButtons">
+            <button style="background-color:#0F7917;" id="buyButton"> Buy</button>
+            <button style="background-color:#C11B1B; margin-left: 8px;" id="sellButton"> Sell</button>
+        </div>
     </div>
 
-
+    <script>
+        function returnQuote() {
+            console.log("def")
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script type="module" src="api.js"></script>
+    <script type="module" src="api.js" ></script>
     <script type="module" src="Sectors.js" defer></script>
     <script src="tabs.js"></script>
     <script type="module" src="movers.js" defer></script>

@@ -61,6 +61,7 @@ function changeClass(that, className, action) {
     console.log(classFunction);
     eval(classFunction);
 }
+
 function clickTaab() {
     if (!accountModal.classList.contains("moveUp")) {
         mainTabs[0].click();

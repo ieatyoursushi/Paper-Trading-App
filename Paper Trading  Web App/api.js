@@ -1,6 +1,7 @@
 ﻿const key = 'J8S17UJBIPF8KUXZ';
 const key2 = 'fbccd5f0-e34c-4802-b20d-0a7bb573b34e';
 import { format } from '/movers.js';
+ 
 function currentDay() {
     let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
     const date = new Date().getDay();
@@ -9,9 +10,9 @@ function currentDay() {
 export { currentDay }
 const today = currentDay();
 console.log(today);
-function cleanMessage(message) {
+function cleanMessage(message, n1, n2) {
     let cleanedMessage = message.split(' ');
-    cleanedMessage.splice(1, 1);
+    cleanedMessage.splice(n1, n2);
     cleanedMessage = cleanedMessage.join(' ');
     return cleanedMessage;
 }
@@ -75,7 +76,6 @@ function displayIndexes(data) {
         let priceChange = data[marketQuote.num].change;
         let purePercentage = data[marketQuote.num].changesPercentage;
         let percentageChange = '(' + format(purePercentage, true) + '%)';
-        console.log(percentageChange);
         let changeText = document.querySelector("." + marketQuote.symbol + "change")
         changeText.innerHTML = format(priceChange, true) + " " + percentageChange;
         if (indexPrice > previousClose) {
@@ -87,7 +87,6 @@ function displayIndexes(data) {
     })
 }
  
-
 function displayGraph(symbol, interval) {
     const chart = document.getElementById(symbol + "Chart");    
     console.log(chart);
@@ -107,10 +106,17 @@ function displayGraph(symbol, interval) {
             labels = [];
             dates = [];
         }
-        let lastUpdatedDate = cleanMessage(data[0].date)
+        let lastUpdatedDate = cleanMessage(data[0].date, 1, 1)
+        let lastUpdatedTime = cleanMessage(data[0].date, 0, 1);
+        if (lastUpdatedTime === "16:00:00") {
+
+        } else {
+ 
+        }
+        console.log('lastupdatedtime: ' + lastUpdatedTime);
         console.log('last updated date: ' + lastUpdatedDate);
         for (let i = 0; i < data.length; i++) {
-            let timeDate = cleanMessage(data[i].date);
+            let timeDate = cleanMessage(data[i].date, 1, 1);
             if (timeDate === lastUpdatedDate) {
                 dates.push(timeDate);
             } else {
@@ -124,7 +130,7 @@ function displayGraph(symbol, interval) {
         let yesterdaysClosePrice = data[dates.length].close * multiplyer;
         console.log('yesterdays close: ' + yesterdaysCloseDate + ' closing price: ' + yesterdaysClosePrice);
         // datapoints
-        for (let i = dates.length - 1; i >= 0; i--) {
+        for (let i = dates.length; i >= 0; i--) {
             let time = data[i].date;
             labels.push(time);
             price.push(format(data[i].close * multiplyer));
@@ -140,6 +146,7 @@ function displayGraph(symbol, interval) {
             backgroundColor: 'rgb(20, 205, 50, 0.5)';
         }
     }).then(() => {
+        console.log(symbol);
         let chartStatus = Chart.getChart(chart);
         if (chartStatus != undefined) {
             chartStatus.destroy();
@@ -180,26 +187,63 @@ setTimeout(function () {
 }, 500)
 setTimeout(returnMarketQuote, 500);
 
-if (today != "Saturday" && today != "Sunday") {
-    setInterval(returnMarketQuote, 5000);
-    setInterval(function () {
+if (today != "Saturday" && today != "Sunday" ) {
+    let rmq = setInterval(returnMarketQuote, 5000);
+    let dmq = setInterval(function () {
         marketQuotes.forEach(symbol => {
-            displayGraph(symbol.symbol, interval.fiveMin);
+            displayGraph(symbol.index, interval.fiveMin);
             console.log("interval");
         })
     }, 300000)
     
 } 
-
-function returnQuote() {
-    let quote = document.getElementById("searchbar").value;
-    fetch("https://api.tdameritrade.com/v1/marketdata/quotes?apikey=DWJMYBQYEAPPGOAVBAASYIUI7IXPDKPL&symbol=" + quote)
-        .then(function (response) {
-            return response.json();
-        }).then(function (data) {
-            console.log(data[quote.toUpperCase()]["askPrice"]);
-        })
+function changeClass(that, className, action) {
+    var classFunction = "document.querySelector('" + that + "')" + ".classList." + action + "('" + className + "')";
+    console.log(classFunction);
+    eval(classFunction);
 }
-function openModal() {
+let searchHistory = [];
+let intervalHistory = []
+let query = false;
+//let eventHistory = document.getEventListeners(document.getElementById("searchbar"))
+document.getElementById("searchbar").addEventListener('change', (searchBar) => {
+    let quote = document.querySelector("#searchbar").value.toUpperCase();
+ 
+    console.log(searchHistory);
+    let tradeModal = document.getElementById("tradeModal");
+    let listener = document.getElementById("searchbar").addEventListener('keyup', (event) => {
+        if (event.keyCode === 13) {
+            fetch("https://financialmodelingprep.com/api/v3/quote/" + quote + "?apikey=69f8cb94503175678fe3194af1c9e734")
+                .then(function (response) {
+                    return response.json();
+                }).then(function (data) {
+                    if (!tradeModal.classList.contains("moveUpp")) {
+                        changeClass("#tradeModal", "moveUpp", 'add')
+                    }
+                    let quoteTitle = document.querySelector(".quoteTitle");
+                    quoteTitle.children[0].innerHTML = data[0].symbol;
+                    quoteTitle.children[1].innerHTML = data[0].name;
+                    let quotePrice = document.querySelector(".quotePrice");
+                    quotePrice.children[0].innerHTML = "$" + data[0].price;
 
-}
+                    //makes sure that only one interval (the current one) runs
+                    searchHistory.push(quote);
+                    let interval = window.setInterval(() => {
+                        console.log(data[0].price);
+                    }, 1000)
+                    intervalHistory.push(interval);
+                    if (intervalHistory.length > 2) {
+                        intervalHistory.shift();
+                    }
+                    console.log(intervalHistory)
+                    if (query) {
+                        clearInterval(intervalHistory[0]);
+                    }
+                    
+                    query = true;
+                })
+        }
+    }, { once: true })
+    document.getElementById("searchbar").removeEventListener('keyup', listener);
+})
+ 
