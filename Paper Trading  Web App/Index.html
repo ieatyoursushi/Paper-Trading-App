@@ -10,10 +10,10 @@
         <ul>
             <li class="mainTab" data-main-tab="#AccountTab"> Account </li>
             <li class="mainTab" data-main-tab="#WatchlistTab"> Watchlist </li>
-            <li class="mainTab" data-main-tab="#TradeTab"> Trade </li>
             <li class="mainTab" data-main-tab="#MarketsTab"> Markets </li>
             <li class="mainTab" data-main-tab="#EducationTab"> Education </li>
             <li class="mainTab" data-main-tab="#ChatTab"> Chatroom </li>
+            <li class="mainTab" data-main-tab="#ChatTab"> ∭ </li>
         </ul>
         <input id="searchbar" type="search" placeholder="🔍 Ticker" />
     </nav>
@@ -101,7 +101,7 @@
     </div>
 
     <div class="webApp" id="EducationTab">
-
+        
     </div>
 
     <div class="webApp" id="ChatTab">
@@ -124,11 +124,14 @@
             <buttton class="exit" onclick="changeClass('#tradeModal', 'moveUpp', 'toggle');"> X </buttton>
         </div>
         <div class="quotePrice">
-            <h1> Price: </h1>
+            <h1> Price: <span id="priceChangeSpan"></span> &nbsp; <span></span></h1>
         </div>
         <div class="quoteButtons">
             <button style="background-color:#0F7917;" id="buyButton"> Buy</button>
             <button style="background-color:#C11B1B; margin-left: 8px;" id="sellButton"> Sell</button>
+        </div>
+        <div class="chart">
+            <canvas id="stockChart"></canvas>
         </div>
     </div>
 
@@ -143,5 +146,6 @@
     <script src="tabs.js"></script>
     <script type="module" src="movers.js" defer></script>
     <script type="module" src="ColorChanger.js" defer></script>
+    <script src="TradeTab.js" type="module"></script>
 </body>
 </html>

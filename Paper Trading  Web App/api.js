@@ -16,7 +16,7 @@ function cleanMessage(message, n1, n2) {
     cleanedMessage = cleanedMessage.join(' ');
     return cleanedMessage;
 }
-
+export {cleanMessage }
 let marketQuotes = [
     { symbol: 'QQQ', multiplyer: '1', index: '^IXIC', num: 2},
     { symbol: 'SPY', multiplyer: '1', index: '^GSPC', num: 1},
@@ -52,7 +52,7 @@ class Stock {
         return data;
     }
 }
- 
+export { Stock }
 //constant 
 function returnMarketQuote() {
     //td ameritrade data
@@ -115,6 +115,7 @@ function displayGraph(symbol, interval) {
         }
         console.log('lastupdatedtime: ' + lastUpdatedTime);
         console.log('last updated date: ' + lastUpdatedDate);
+ 
         for (let i = 0; i < data.length; i++) {
             let timeDate = cleanMessage(data[i].date, 1, 1);
             if (timeDate === lastUpdatedDate) {
@@ -123,10 +124,11 @@ function displayGraph(symbol, interval) {
                 break;
             }
         }
- 
+
         console.log(dates);
+        console.log(dates.length);
         let multiplyer = 1;
-        let yesterdaysCloseDate = data[dates.length].date;
+        let yesterdaysCloseDate = data[dates.length ].date;
         let yesterdaysClosePrice = data[dates.length].close * multiplyer;
         console.log('yesterdays close: ' + yesterdaysCloseDate + ' closing price: ' + yesterdaysClosePrice);
         // datapoints
@@ -197,53 +199,7 @@ if (today != "Saturday" && today != "Sunday" ) {
     }, 300000)
     
 } 
-function changeClass(that, className, action) {
-    var classFunction = "document.querySelector('" + that + "')" + ".classList." + action + "('" + className + "')";
-    console.log(classFunction);
-    eval(classFunction);
-}
-let searchHistory = [];
-let intervalHistory = []
-let query = false;
-//let eventHistory = document.getEventListeners(document.getElementById("searchbar"))
-document.getElementById("searchbar").addEventListener('change', (searchBar) => {
-    let quote = document.querySelector("#searchbar").value.toUpperCase();
- 
-    console.log(searchHistory);
-    let tradeModal = document.getElementById("tradeModal");
-    let listener = document.getElementById("searchbar").addEventListener('keyup', (event) => {
-        if (event.keyCode === 13) {
-            fetch("https://financialmodelingprep.com/api/v3/quote/" + quote + "?apikey=69f8cb94503175678fe3194af1c9e734")
-                .then(function (response) {
-                    return response.json();
-                }).then(function (data) {
-                    if (!tradeModal.classList.contains("moveUpp")) {
-                        changeClass("#tradeModal", "moveUpp", 'add')
-                    }
-                    let quoteTitle = document.querySelector(".quoteTitle");
-                    quoteTitle.children[0].innerHTML = data[0].symbol;
-                    quoteTitle.children[1].innerHTML = data[0].name;
-                    let quotePrice = document.querySelector(".quotePrice");
-                    quotePrice.children[0].innerHTML = "$" + data[0].price;
 
-                    //makes sure that only one interval (the current one) runs
-                    searchHistory.push(quote);
-                    let interval = window.setInterval(() => {
-                        console.log(data[0].price);
-                    }, 1000)
-                    intervalHistory.push(interval);
-                    if (intervalHistory.length > 2) {
-                        intervalHistory.shift();
-                    }
-                    console.log(intervalHistory)
-                    if (query) {
-                        clearInterval(intervalHistory[0]);
-                    }
-                    
-                    query = true;
-                })
-        }
-    }, { once: true })
-    document.getElementById("searchbar").removeEventListener('keyup', listener);
-})
+
+ 
  

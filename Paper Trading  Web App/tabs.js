@@ -30,7 +30,7 @@ for (let i = 0; i < mainTabs.length; i++) {
 mainTabs[0].addEventListener('click', function () {
     changeClass("#accountModal", "moveUp", "add")
 })
-mainTabs[3].click();
+mainTabs[2].click();
 function removeAppContent() {
     webAppContent.forEach(function (mainContent) {
         mainContent.style.display = "none";

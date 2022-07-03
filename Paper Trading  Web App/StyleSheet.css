@@ -66,9 +66,6 @@ nav input {
     float: right;
     border-radius: 50px; 
 }
-span {
-    color: green;
-}
  
 .webApp {
     width: 100%;
@@ -145,6 +142,15 @@ nav ul {
     margin-left: 10px;
     width: 94%;
     height: 63.3%;
+}
+#tradeModal .chart {
+    outline: 1px solid gray;
+    margin-top: 18px;
+    margin-left: 10px;
+    width: 94%;
+    height: 63.3%;
+    max-height: 400px;
+    max-width: 800px;
 }
 .Sectors {
     display: flex;
@@ -228,9 +234,6 @@ nav ul {
  
     width: 100%;
 }
-#amc {
-    background: green;
-}
 #moverTitle {
     margin-top: 5px;
     margin-left: 0;
@@ -238,36 +241,7 @@ nav ul {
     font-weight: 600;
 }
  
-@media(max-width: 1500px) {
-    .Markets {
-        width: auto;
-    }
-}
-@media (max-width: 1250px) {
-    .Markets {
-        margin-top: 9px;
-    }
-    .index {
-        margin: 10px 9px;
-        height: 257.6px;
-        width: 345px;
-    }
-    .Sectors .sector {
-        height: 55px;
-        width: 170px;
-    }
-    .sector h5 {
-        font-size: 13.28px;
-    }
-
-    .sector h4 {
-        font-size: 16px;
-    }
-    .Movers {
-        width: 450px;
-        margin-bottom: 10px;
-    }
-}
+ 
 #accountModal {
     position: relative;
     z-index: 1;
@@ -343,7 +317,7 @@ nav ul {
     display: flex;
     margin-left: 20px;
     align-items: baseline;
-    margin-top: 16px;
+    margin-top: 20px;
 }
 .quoteButtons button {
 	border-radius:28px;
@@ -359,12 +333,52 @@ nav ul {
     outline: none;
 }
 .quoteButtons button:hover {
-    filter: brightness(85%);
+    filter: brightness(90%);
+}
+#stockChart {
+    outline: 1px solid;
+    margin-left: 20px;
+    margin-top: 20px;
 }
 #tradeModal.moveUpp {
     position: relative;
     transition: 0.5s;
     top: -1790px;
+}
+@media(max-width: 1500px) {
+    .Markets {
+        width: auto;
+    }
+}
+
+@media (max-width: 1250px) {
+    .Markets {
+        margin-top: 9px;
+    }
+
+    .index {
+        margin: 10px 9px;
+        height: 257.6px;
+        width: 345px;
+    }
+
+    .Sectors .sector {
+        height: 55px;
+        width: 170px;
+    }
+
+    .sector h5 {
+        font-size: 13.28px;
+    }
+
+    .sector h4 {
+        font-size: 16px;
+    }
+
+    .Movers {
+        width: 450px;
+        margin-bottom: 10px;
+    }
 }
 @media(max-width: 1090px) {
     .Movers {
