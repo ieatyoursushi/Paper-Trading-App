@@ -22,7 +22,7 @@ document.getElementById("searchbar").addEventListener('change', (searchBar) => {
     let tradeModal = document.getElementById("tradeModal");
     let listener = document.getElementById("searchbar").addEventListener('keyup', (event) => {
         if (event.keyCode === 13) {
-            fetch("https://financialmodelingprep.com/api/v3/quote/" + quote + "?apikey=69f8cb94503175678fe3194af1c9e734")
+            fetch("https://financialmodelingprep.com/api/v4/company-outlook?symbol=" + quote + "&apikey=69f8cb94503175678fe3194af1c9e734")
                 .then(function (response) {
                     return response.json();
                 }).then(function (data) {
@@ -31,22 +31,37 @@ document.getElementById("searchbar").addEventListener('change', (searchBar) => {
                     }
                     // trade modal tab
                     let quoteTitle = document.querySelector(".quoteTitle");
-                    quoteTitle.children[0].innerHTML = data[0].symbol;
-                    quoteTitle.children[1].innerHTML = data[0].name;
-                    
+                    quoteTitle.children[0].innerHTML = data.profile.symbol;
+                    quoteTitle.children[1].innerHTML = data.profile.name;
+                    quoteTitle.children[2].children[1].innerHTML = data.profile.exchange;
+                    quoteTitle.children[3].children[1].innerHTML = data.profile.marketCap;
+                    quoteTitle.children[4].children[1].innerHTML = data.profile.volume;
+                    quoteTitle.children[5].children[1].innerHTML = format(data.profile.previousClose, false);
+                    quoteTitle.children[6].children[1].innerHTML = format(data.profile.dayHigh, false);
+                    quoteTitle.children[7].children[1].innerHTML = format(data.profile.dayLow, false);
+                    quoteTitle.children[8].children[1].innerHTML = data.profile.sharesOutstanding;
+                    //side bar
+                    let sidebar = document.querySelector(".combine");
+                    let stockInfo = sidebar.children[0];
+                    stockInfo.children[0].children[1].innerHTML = data.profile.exchange;
+                    stockInfo.children[1].children[1].innerHTML = format(data.profile.open, false);
+                    stockInfo.children[2].children[1].innerHTML = format(data.profile.previousClose, false);
+                    stockInfo.children[3].children[1].innerHTML = format(data.profile.dayLow, false) + " - " + format(data.profile.dayHigh, false);
+                    stockInfo.children[4].children[1].innerHTML = format(data.profile.yearLow, false) + " - " + format(data.profile.yearHigh, false);
+                    stockInfo.children[5].children[1].innerHTML = Number(format(data.profile.volume, false)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                     let quotePrice = document.querySelector(".quotePrice");
-                    let priceColor = priceDirection(format(data[0].changesPercentage, true));
+                    let priceColor = priceDirection(format(data.profile.changesPercentage, true));
                     //style
-                    quotePrice.children[0].innerHTML = "$" + Number(data[0].price).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " " + "<span class='priceChangeSpan'>" + format(data[0].change, true) + "</span>" + "<span class='pricePercentageSpan'>" + " " + "(" + format(data[0].changesPercentage, false) + "%" + ")" + "</span>";
-                    document.getElementsByClassName("priceChangeSpan")[0].style.color = priceDirection(format(data[0].changesPercentage, true));
+                    quotePrice.children[0].innerHTML = "$" + Number(data.profile.price).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " " + "<span class='priceChangeSpan'>" + format(data.profile.change, true) + "</span>" + "<span class='pricePercentageSpan'>" + " " + "(" + format(data.profile.changesPercentage, false) + "%" + ")" + "</span>";
+                    document.getElementsByClassName("priceChangeSpan")[0].style.color = priceDirection(format(data.profile.changesPercentage, true));
                     document.getElementsByClassName("priceChangeSpan")[0].style.fontSize = "21px";
-                    document.getElementsByClassName("pricePercentageSpan")[0].style.color = priceDirection(format(data[0].changesPercentage, false));
+                    document.getElementsByClassName("pricePercentageSpan")[0].style.color = priceDirection(format(data.profile.changesPercentage, false));
                     document.getElementsByClassName("pricePercentageSpan")[0].style.fontSize = "19.5px";
                     document.getElementsByClassName("pricePercentageSpan")[0].style.fontWeight = "100";
                     //makes sure that only one interval (the current one) runs
                     searchHistory.push(quote);
                     let interval = window.setInterval(() => {
-                        console.log(data[0].price);
+                        console.log(data.profile.price);
                     }, 1000)
                     intervalHistory.push(interval);
                     if (intervalHistory.length > 2) {
@@ -65,7 +80,7 @@ document.getElementById("searchbar").addEventListener('change', (searchBar) => {
                         fill: 'start',
                         backgroundColor: 'rgb(20, 205, 50, 0.5)',
                     }
-                    let priceHistory = new Stock(data[0].symbol).historicalChart('5min/');
+                    let priceHistory = new Stock(data.profile.symbol).historicalChart('5min/');
                     priceHistory.then(data => {
                         console.log(data);
                         let dates = [];
@@ -138,6 +153,7 @@ document.getElementById("searchbar").addEventListener('change', (searchBar) => {
                             data: data,
                             options: options,
                         })
+
                     })
                 })
         }

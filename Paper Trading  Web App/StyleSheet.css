@@ -143,15 +143,7 @@ nav ul {
     width: 94%;
     height: 63.3%;
 }
-#tradeModal .chart {
-    outline: 1px solid gray;
-    margin-top: 18px;
-    margin-left: 10px;
-    width: 94%;
-    height: 63.3%;
-    max-height: 400px;
-    max-width: 800px;
-}
+ 
 .Sectors {
     display: flex;
     justify-content: flex-start;
@@ -338,12 +330,47 @@ nav ul {
 #stockChart {
     outline: 1px solid;
     margin-left: 20px;
-    margin-top: 20px;
+    
+}
+.stockInfo {
+    height: 390px;
+    width: 355px;
+    margin-left: 20px;
+}
+#tradeModal .chart {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    width: 94%;
+    height: 63.3%;
+    max-height: 400px;
+    max-width: 800px;
+}
+.infoCard {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #d3d3d3;
+    height:28px;
+    align-items: center;
+}
+.combine {
+    display: flex;
+    align-items: center;
+    margin-top: 18px;
+    max-height: 500px;
+    max-width: 1980px;
 }
 #tradeModal.moveUpp {
     position: relative;
     transition: 0.5s;
     top: -1790px;
+}
+.stockLabel {
+    display: block;
+    margin: 0px 10px 0px 20px;
+}
+.stockLabel h4 {
+    margin: 0px;
 }
 @media(max-width: 1500px) {
     .Markets {
