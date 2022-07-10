@@ -121,31 +121,31 @@
         <div class="quoteTitle">
             <h3> </h3>
             <h4></h4>
-            <div class="stockLabel">
+            <div class="stockLabel" data-value="exchange" >
                 <h4> Exchange </h4>
                 <h4 style="font-weight: 700"> 93.2</h4>
             </div>
-            <div class="stockLabel">
+            <div class="stockLabel" data-value="marketCap" data-bigNumber="true">
                 <h4> Market Cap </h4>
                 <h4 style="font-weight: 700"> 93.2</h4>
             </div>
-            <div class="stockLabel">
+            <div class="stockLabel" data-value="volume" data-bigNumber="true">
                 <h4> Volume </h4>
                 <h4 style="font-weight: 700"> 93.2</h4>
             </div>
-            <div class="stockLabel">
+            <div class="stockLabel" data-value="previousClose" data-isNumber="true">
                 <h4> Previous </h4>
                 <h4 style="font-weight: 700"> 93.2</h4>
             </div>
-            <div class="stockLabel">
+            <div class="stockLabel"data-value="dayHigh" data-isNumber="true">
                 <h4> Day High </h4>
                 <h4 style="font-weight: 700"> 93.2</h4>
             </div>
-            <div class="stockLabel">
+            <div class="stockLabel"data-value="dayLow" data-isNumber="true">
                 <h4> Day Low</h4>
                 <h4 style="font-weight: 700"> 93.2</h4>
             </div>
-            <div class="stockLabel">
+            <div class="stockLabel" data-value="sharesOutstanding" data-bigNumber="true">
                 <h4> Float </h4>
                 <h4 style="font-weight: 700"> 93.2</h4>
             </div>
@@ -161,30 +161,47 @@
         </div>
         <div class="combine">
             <div class="stockInfo">
-                <header class="infoCard">
+                <header class="infoCard" data-value="exchange" data-isNumber="false">
                     <h4 style="font-weight: 100">Exchange: </h4>
                     <h4> null </h4>
                 </header>
-                <header class="infoCard">
+                <header class="infoCard" data-value="open" data-isNumber="true">
                     <h4 style="font-weight: 100">Day Open: </h4>
                     <h4> null </h4>
                 </header>
-                <header class="infoCard">
+                <header class="infoCard" data-value="previousClose" data-isNumber="true">
                     <h4 style="font-weight: 100">Previous Close: </h4>
                     <h4> null </h4>
                 </header>
-                <header class="infoCard">
+                <header class="infoCard" data-value="cancel" data-isNumber="true">
                     <h4 style="font-weight: 100">Day Range: </h4>
                     <h4> null </h4>
                 </header>
-                <header class="infoCard">
+                <header class="infoCard" data-value="cancel" data-isNumber="true">
                     <h4 style="font-weight: 100">Year Range: </h4>
                     <h4> null </h4>
                 </header>
-                <header class="infoCard">
+                <header class="infoCard" data-value="volume" data-isNumber="false" data-isLarge="true">
                     <h4 style="font-weight: 100">Volume: </h4>
                     <h4> null </h4>
                 </header>
+                <header class="infoCard" data-value="sharesOutstanding" data-isNumber="false" data-isLarge="true">
+                    <h4 style="font-weight:100"> Shares Outstanding </h4>
+                    <h4> null </h4>
+                </header>
+                <header class="infoCard" data-value="marketCap" data-isNumber="false" data-isLarge="true">
+                    <h4 style="font-weight:100"> Market Cap </h4>
+                    <h4> null </h4>
+                </header>
+                <header class="infoCard" data-value="eps" data-isNumber="true">
+                    <h4 style="font-weight:100"> Earnings Per Share </h4>
+                    <h4> null </h4>
+                </header>
+                <header class="infoCard" data-value="pe" data-isNumber="true">
+                    <h4 style="font-weight:100"> P/E Ratio </h4>
+                    <h4> null </h4>
+                </header>
+
             </div>
             <div class="chart">
                 <canvas id="stockChart"></canvas>
