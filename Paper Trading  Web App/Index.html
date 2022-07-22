@@ -15,7 +15,7 @@
             <li class="mainTab" data-main-tab="#ChatTab"> Chatroom </li>
             <li class="mainTab" data-main-tab="#ChatTab"> ∭ </li>
         </ul>
-        <input id="searchbar" type="search" placeholder="🔍 Ticker" />
+        <input id="searchbar" type="search" placeholder="🔍 Ticker" onchange="checkTab()"/>
     </nav>
 
     <div class="webApp" id="MarketsTab">
@@ -149,7 +149,7 @@
                 <h4> Float </h4>
                 <h4 style="font-weight: 700"> 93.2</h4>
             </div>
-            <buttton class="exit" onclick="changeClass('#tradeModal', 'moveUpp', 'toggle');"> X </buttton>
+            <buttton class="exit" onclick="changeClass('#tradeModal', 'moveUpp', 'toggle'); checkTab();"> X </buttton>
         </div>
 
         <div class="quotePrice">
@@ -160,49 +160,73 @@
             <button style="background-color:#C11B1B; margin-left: 8px" id="sellButton"> Sell</button>
         </div>
         <div class="combine">
-            <div class="stockInfo">
-                <header class="infoCard" data-value="exchange" data-isNumber="false">
-                    <h4 style="font-weight: 100">Exchange: </h4>
-                    <h4> null </h4>
-                </header>
-                <header class="infoCard" data-value="open" data-isNumber="true">
-                    <h4 style="font-weight: 100">Day Open: </h4>
-                    <h4> null </h4>
-                </header>
-                <header class="infoCard" data-value="previousClose" data-isNumber="true">
-                    <h4 style="font-weight: 100">Previous Close: </h4>
-                    <h4> null </h4>
-                </header>
-                <header class="infoCard" data-value="cancel" data-isNumber="true">
-                    <h4 style="font-weight: 100">Day Range: </h4>
-                    <h4> null </h4>
-                </header>
-                <header class="infoCard" data-value="cancel" data-isNumber="true">
-                    <h4 style="font-weight: 100">Year Range: </h4>
-                    <h4> null </h4>
-                </header>
-                <header class="infoCard" data-value="volume" data-isNumber="false" data-isLarge="true">
-                    <h4 style="font-weight: 100">Volume: </h4>
-                    <h4> null </h4>
-                </header>
-                <header class="infoCard" data-value="sharesOutstanding" data-isNumber="false" data-isLarge="true">
-                    <h4 style="font-weight:100"> Shares Outstanding </h4>
-                    <h4> null </h4>
-                </header>
-                <header class="infoCard" data-value="marketCap" data-isNumber="false" data-isLarge="true">
-                    <h4 style="font-weight:100"> Market Cap </h4>
-                    <h4> null </h4>
-                </header>
-                <header class="infoCard" data-value="eps" data-isNumber="true">
-                    <h4 style="font-weight:100"> Earnings Per Share </h4>
-                    <h4> null </h4>
-                </header>
-                <header class="infoCard" data-value="pe" data-isNumber="true">
-                    <h4 style="font-weight:100"> P/E Ratio </h4>
-                    <h4> null </h4>
-                </header>
-
+            <div class="leftBar">
+                <div class="stockInfo">
+                    <header class="infoCard" data-value="exchange" data-isNumber="false">
+                        <h4 style="font-weight: 100">Exchange: </h4>
+                        <h4> null </h4>
+                    </header>
+                    <header class="infoCard" data-value="open" data-isNumber="true">
+                        <h4 style="font-weight: 100">Day Open: </h4>
+                        <h4> null </h4>
+                    </header>
+                    <header class="infoCard" data-value="previousClose" data-isNumber="true">
+                        <h4 style="font-weight: 100">Previous Close: </h4>
+                        <h4> null </h4>
+                    </header>
+                    <header class="infoCard" data-value="cancel" data-isNumber="true">
+                        <h4 style="font-weight: 100">Day Range: </h4>
+                        <h4> null </h4>
+                    </header>
+                    <header class="infoCard" data-value="cancel" data-isNumber="true">
+                        <h4 style="font-weight: 100">Year Range: </h4>
+                        <h4> null </h4>
+                    </header>
+                    <header class="infoCard" data-value="volume" data-isNumber="false" data-isLarge="true">
+                        <h4 style="font-weight: 100">Volume: </h4>
+                        <h4> null </h4>
+                    </header>
+                    <header class="infoCard" data-value="sharesOutstanding" data-isNumber="false" data-isLarge="true">
+                        <h4 style="font-weight:100"> Shares Outstanding </h4>
+                        <h4> null </h4>
+                    </header>
+                    <header class="infoCard" data-value="marketCap" data-isNumber="false" data-isLarge="true">
+                        <h4 style="font-weight:100"> Market Cap </h4>
+                        <h4> null </h4>
+                    </header>
+                    <header class="infoCard" data-value="eps" data-isNumber="true">
+                        <h4 style="font-weight:100"> Earnings Per Share </h4>
+                        <h4> null </h4>
+                    </header>
+                    <header class="infoCard" data-value="pe" data-isNumber="true">
+                        <h4 style="font-weight:100"> P/E Ratio </h4>
+                        <h4> null </h4>
+                    </header>
+                    <header class="screener" data-value="cancel" data-isNumber="true">
+                        <h4 style="font-weight:100"> Anual Dividend/Yield : </h4>
+                        <h4>null </h4>
+                    </header>
+                    <header class="screener" data-value="profile.sector" data-isNumber="false">
+                        <h4 style="font-weight:100"> Sector </h4>
+                        <h4>null </h4>
+                    </header>
+                    <header class="screener" data-value="profile.industry" data-isNumber="false">
+                        <h4 style="font-weight:100"> Industry</h4>
+                        <h4>null </h4>
+                    </header>
+                    <header class="screener" data-value="cancel" data-isNumber="false">
+                        <h4 style="font-weight:100"> Company Website</h4>
+                        <a target="_blank">
+                            <h4></h4>
+                        </a>
+                    </header>
+                </div>
+                <div class="priceTarget">
+                    
+                </div>
             </div>
+ 
+
             <div class="chart">
                 <canvas id="stockChart"></canvas>
             </div>
@@ -210,8 +234,15 @@
     </div>
 
     <script>
-        function returnQuote() {
-            console.log("def")
+        let tabOpen = false;
+        function checkTab() {
+            let tradeModal = document.getElementById("tradeModal");
+            if (tradeModal.classList.contains("moveUpp")) {
+                tabOpen = true;
+            } else {
+                tabOpen = false;
+            }
+            console.log(tabOpen)
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

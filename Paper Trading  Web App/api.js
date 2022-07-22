@@ -182,6 +182,19 @@ function displayGraph(symbol, interval) {
         })
     })
 }
+//constantly check tabs
+let tabOpen = false;
+export { tabOpen }
+function checkTab() {
+    let tradeModal = document.getElementById("tradeModal");
+    if (tradeModal.classList.contains("moveUpp")) {
+        tabOpen = true;
+    } else {
+        tabOpen = false;
+    }
+    //console.log(tabOpen)
+}
+setInterval(checkTab, 500)
 setTimeout(function () {
     marketQuotes.forEach(symbol => {
         displayGraph(symbol.index, interval.fiveMin);
@@ -191,15 +204,15 @@ setTimeout(returnMarketQuote, 500);
 
 if (today != "Saturday" && today != "Sunday" ) {
     let rmq = setInterval(returnMarketQuote, 5000);
+
     let dmq = setInterval(function () {
         marketQuotes.forEach(symbol => {
             displayGraph(symbol.index, interval.fiveMin);
             console.log("interval");
         })
-    }, 300000)
+    }, 200000)
     
-} 
-
+}
 
  
  

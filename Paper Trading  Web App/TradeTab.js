@@ -15,17 +15,25 @@ let chartArea = {
 }
 let query = false;
 //let eventHistory = document.getEventListeners(document.getElementById("searchbar"))
+
+let infoDiv = document.querySelector(".stockInfo").children;
+for (let i = 0; i < infoDiv.length; i++) {
+    infoDiv[i].children[0].style.marginRight = "20px";
+    infoDiv[i].children[1].style.margin = "5px 0";
+}
+document.getElementById("")
 document.getElementById("searchbar").addEventListener('change', (searchBar) => {
     let quote = document.querySelector("#searchbar").value.toUpperCase();
 
     console.log(searchHistory);
-    let tradeModal = document.getElementById("tradeModal");
+ 
     let listener = document.getElementById("searchbar").addEventListener('keyup', (event) => {
         if (event.keyCode === 13) {
             fetch("https://financialmodelingprep.com/api/v3/quote/" + quote + "?apikey=69f8cb94503175678fe3194af1c9e734")
                 .then(function (response) {
                     return response.json();
                 }).then(function (data) {
+                    let tradeModal = document.getElementById("tradeModal");
                     if (!tradeModal.classList.contains("moveUpp")) {
                         changeClass("#tradeModal", "moveUpp", 'add')
                     }
@@ -41,7 +49,18 @@ document.getElementById("searchbar").addEventListener('change', (searchBar) => {
                         } else {
                             if (bigNumber == "true") {
                                 //convert big integer to notation (1-999K, 1-999M, 1-999B, 1-999T)
-                                let number = eval("data[0]." + dataValue).toString();
+                                let num = eval("data[0]." + dataValue);
+                                //default value is 0;
+                                let number = 0;
+                                //checks if [i] number is null, if it is null then use a string placeholder 
+                                if (num != null) {
+                                    number = num.toString();
+                                } else {
+                                    number = 0;
+                                    number = number.toString();
+                                }
+
+                                console.log(number);
                                 let numberArray = number.split("");
                                 let numberLength = numberArray.length;
                                 console.log(numberArray.length);
@@ -64,11 +83,14 @@ document.getElementById("searchbar").addEventListener('change', (searchBar) => {
                     quoteTitle.children[1].innerHTML = data[0].name;
                     //side bar
                     let sidebar = document.querySelector(".combine");
-                    let stockInfo = sidebar.children[0];
+
+                    //change confusing naming.
+                    let stockInfo = sidebar.children[0].children[0];
                     let infoCards = document.querySelectorAll(".infoCard")
                     for (let i = 0; i < infoCards.length; i++) {
                         let dataValue = infoCards[i].getAttribute("data-value");
                         let isNumber = infoCards[i].getAttribute("data-isNumber");
+                        //ignores objects with a value of cancel
                         if (dataValue != "cancel") {
                             console.log(isNumber == "true")
                             if (isNumber == "true") {
@@ -81,11 +103,34 @@ document.getElementById("searchbar").addEventListener('change', (searchBar) => {
                             }
                         }  
                         if (dataValue === "pe") {
-                            infoCards[i].children[1].innerHTML = format(eval("data[0]." + dataValue),false) + "x"
+                            infoCards[i].children[1].innerHTML = format(eval("data[0]." + dataValue), false) + "x"
+
                         }
+
                     }
+                    //objects that have the value cancel are done manually
                     stockInfo.children[3].children[1].innerHTML = format(data[0].dayLow, false) + " - " + format(data[0].dayHigh, false);
                     stockInfo.children[4].children[1].innerHTML = format(data[0].yearLow, false) + " - " + format(data[0].yearHigh, false);
+                    fetch("https://financialmodelingprep.com/api/v4/company-outlook?symbol=" + quote + "&apikey=69f8cb94503175678fe3194af1c9e734")
+                        .then((response) => {
+                            return response.json();
+                        }).then((data) => {
+                            let screeners = document.getElementsByClassName("screener");
+                            screeners[0].children[1].innerHTML = "$" + format(data.ratios[0].dividendPerShareTTM, false) + "/" + format(data.ratios[0].dividendYielPercentageTTM, false) + "%";
+                            screeners[3].children[1].children[0].innerHTML = data.profile.website;
+                            screeners[3].children[1].setAttribute("href", data.profile.website);
+                            for (let i = 0; i < screeners.length; i++) {
+                                let _dataValue = screeners[i].getAttribute("data-value");
+                                console.log(screeners[i])
+                                if (_dataValue != "cancel") {
+                                    screeners[i].children[1].innerHTML = eval("data." + _dataValue);
+                                }
+                            }
+                            //price target section
+
+                        })
+ 
+
                     //style
                     let quotePrice = document.querySelector(".quotePrice");
                     let priceColor = priceDirection(format(data[0].changesPercentage, true));

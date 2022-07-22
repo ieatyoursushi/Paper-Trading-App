@@ -333,9 +333,24 @@ nav ul {
     
 }
 .stockInfo {
-    height: 390px;
+    max-height: 390px;
     width: 355px;
     margin-left: 20px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+.stockInfo::-webkit-scrollbar {
+    width: 5px;
+}
+.stockInfo::-webkit-scrollbar-thumb {
+    background: lightgray;
+    border-radius: 50px;
+}
+stockInfo::-webkit-scrollbar-thumb:hover{
+    background: grey;
+}
+.leftBar {
+
 }
 #tradeModal .chart {
     display: flex;
@@ -352,12 +367,19 @@ nav ul {
     border-bottom: 1px solid #d3d3d3;
     min-height:30px;
     align-items: center;
+    margin-right: 1px;
+}
+.screener {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #d3d3d3;
+    min-height: 30px;
+    align-items: center;
+    margin-right: 1px;
 }
 .combine {
     display: flex;
-    align-items: center;
     margin-top: 18px;
-    max-height: 500px;
     max-width: 1980px;
 }
 #tradeModal.moveUpp {
