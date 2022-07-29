@@ -79,7 +79,7 @@ document.getElementById("searchbar").addEventListener('change', (searchBar) => {
                         }
  
                     }
-                    quoteTitle.children[0].innerHTML = data[0].symbol;
+                    quoteTitle.children[0].innerHTML = "<h3>" + data[0].symbol + "</h3>";
                     quoteTitle.children[1].innerHTML = data[0].name;
                     //side bar
                     let sidebar = document.querySelector(".combine");
@@ -117,16 +117,24 @@ document.getElementById("searchbar").addEventListener('change', (searchBar) => {
                         }).then((data) => {
                             let screeners = document.getElementsByClassName("screener");
                             screeners[0].children[1].innerHTML = "$" + format(data.ratios[0].dividendPerShareTTM, false) + "/" + format(data.ratios[0].dividendYielPercentageTTM, false) + "%";
-                            screeners[3].children[1].children[0].innerHTML = data.profile.website;
-                            screeners[3].children[1].setAttribute("href", data.profile.website);
+                            screeners[5].children[1].children[0].innerHTML = data.profile.website;
+                            screeners[5].children[1].setAttribute("href", data.profile.website);
                             for (let i = 0; i < screeners.length; i++) {
                                 let _dataValue = screeners[i].getAttribute("data-value");
+                                let _dataLarge = screeners[i].getAttribute("data-isLarge");
                                 console.log(screeners[i])
                                 if (_dataValue != "cancel") {
                                     screeners[i].children[1].innerHTML = eval("data." + _dataValue);
+                                    if (_dataLarge == "true") {
+                                        screeners[i].children[1].innerHTML = Number(eval("data." + _dataValue)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                                    }
                                 }
                             }
+                            console.log(quoteTitle.children[0]);
+ 
                             //price target section
+                            let priceTargetDiv = document.querySelector(".priceTarget");
+                            priceTargetDiv.children[1].innerHTML = data.rating[0].ratingScore + " (" + data.rating[0].ratingRecommendation + ")";
 
                         })
  

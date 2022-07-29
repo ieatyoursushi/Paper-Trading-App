@@ -382,9 +382,13 @@ stockInfo::-webkit-scrollbar-thumb:hover{
     margin-top: 18px;
     max-width: 1980px;
 }
+.priceTarget {
+    margin-left: 20px;
+    margin-top: 20px;
+}
 #tradeModal.moveUpp {
     position: relative;
-    transition: 0.5s;
+    transition: 1s;
     top: -1790px;
 }
 .stockLabel {

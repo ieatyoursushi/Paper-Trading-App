@@ -206,11 +206,17 @@ if (today != "Saturday" && today != "Sunday" ) {
     let rmq = setInterval(returnMarketQuote, 5000);
 
     let dmq = setInterval(function () {
-        marketQuotes.forEach(symbol => {
-            displayGraph(symbol.index, interval.fiveMin);
-            console.log("interval");
-        })
-    }, 200000)
+        let currentTime = new Date();
+        let timedMinute = currentTime.getMinutes();
+        let timedSecond = currentTime.getSeconds();
+        if (timedMinute % 5 === 0 && timedSecond === 0) {
+            marketQuotes.forEach(symbol => {
+                displayGraph(symbol.index, interval.fiveMin);
+                console.log("interval");
+            })
+        }
+        console.log(timedMinute % 5 === 0 && timedSecond === 0)
+    }, 1000)
     
 }
 

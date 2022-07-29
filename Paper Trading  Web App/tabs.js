@@ -3,7 +3,6 @@ let mainTabs = document.querySelectorAll("[data-main-tab]");
 let accountModal = document.querySelector("#accountModal");
 removeAppContent();
 let clickHistory = [];
-
 for (let i = 0; i < mainTabs.length; i++) {
     mainTabs[i].addEventListener('click', function () {
         removeAppContent();
