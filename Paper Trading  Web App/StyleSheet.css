@@ -388,7 +388,7 @@ stockInfo::-webkit-scrollbar-thumb:hover{
 }
 #tradeModal.moveUpp {
     position: relative;
-    transition: 1s;
+    transition: 0.7s;
     top: -1790px;
 }
 .stockLabel {
@@ -397,6 +397,33 @@ stockInfo::-webkit-scrollbar-thumb:hover{
 }
 .stockLabel h4 {
     margin: 0px;
+}
+.rectangle {
+    height: 30px;
+    width: 210px;
+    outline: 1px solid;
+    margin-top: 10px;
+    background: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(241,255,5,1) 50%, rgba(78,255,0,1) 100%);
+    border-radius: 30px;
+}
+.outerLayer {
+    width: 210px;
+    height: auto;
+}
+.outerLayer .arrow {
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  width: 10px;
+  margin-left: 50%;
+  border-bottom: 10px solid black;
+  margin-top: 2px;
+}
+.rectangle .line {
+    outline: 1px solid;
+    height: 100%;
+    width: 2px;
+    margin-left: 100px;
+    background: black;
 }
 @media(max-width: 1500px) {
     .Markets {

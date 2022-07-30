@@ -134,7 +134,13 @@ document.getElementById("searchbar").addEventListener('change', (searchBar) => {
  
                             //price target section
                             let priceTargetDiv = document.querySelector(".priceTarget");
+                            let averageScorres = (data.rating[0].ratingDetailsDCFScore + data.rating[0].ratingDetailsROEScore + data.rating[0].ratingDetailsROAScore + data.rating[0].ratingDetailsDEScore  + data.rating[0].ratingDetailsPEScore + data.rating[0].ratingDetailsPBScore) / 6;
                             priceTargetDiv.children[1].innerHTML = data.rating[0].ratingScore + " (" + data.rating[0].ratingRecommendation + ")";
+                            priceTargetDiv.children[2].innerHTML ="Buy Rating Average (wip): " + format(averageScorres, false);
+                            let ratingLine = document.querySelector(".line");
+                            //on a 100 percentage scale
+                            ratingLine.style.marginLeft = ((averageScorres - 1) * 25) + "%";
+                            document.querySelector(".arrow").style.marginLeft = ((averageScorres - 1) * 25) - 1.8966 + "%";
 
                         })
  
