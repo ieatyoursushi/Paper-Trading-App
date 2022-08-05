@@ -139,8 +139,18 @@ document.getElementById("searchbar").addEventListener('change', (searchBar) => {
                             priceTargetDiv.children[2].innerHTML ="Buy Rating Average (wip): " + format(averageScorres, false);
                             let ratingLine = document.querySelector(".line");
                             //on a 100 percentage scale
-                            ratingLine.style.marginLeft = ((averageScorres - 1) * 25) + "%";
+                            ratingLine.style.marginLeft = (25 * (averageScorres - 1)) + "%";
                             document.querySelector(".arrow").style.marginLeft = ((averageScorres - 1) * 25) - 1.8966 + "%";
+                            //price target modal
+                            let priceTargetModal = document.querySelector(".priceTargetModal");
+                            const ratingNames = ["DCF", "ROE", "ROA", "DE", "PE", "PB"];
+                            let lineList = document.querySelectorAll(".line"); 
+                            let arrowList = document.querySelectorAll(".arrow");
+                            for (let i = 0; i < ratingNames.length; i++) {
+                                lineList[i + 1].style.marginLeft = (25 * (eval("data.rating[0].ratingDetails" + ratingNames[i] + "Score") - 1)) + "%";
+                                arrowList[i + 1].style.marginLeft = (25 * (eval("data.rating[0].ratingDetails" + ratingNames[i] + "Score") - 1)) - 1.8966 + "%";
+                            }
+ 
 
                         })
  
