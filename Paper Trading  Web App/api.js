@@ -75,7 +75,7 @@ function displayIndexes(data) {
         let previousClose = data[marketQuote.num].previousClose;
         let priceChange = data[marketQuote.num].change;
         let purePercentage = data[marketQuote.num].changesPercentage;
-        let percentageChange = '(' + format(purePercentage, true) + '%)';
+        let percentageChange = '(' + format(purePercentage, false) + '%)';
         let changeText = document.querySelector("." + marketQuote.symbol + "change")
         changeText.innerHTML = format(priceChange, true) + " " + percentageChange;
         if (indexPrice > previousClose) {
