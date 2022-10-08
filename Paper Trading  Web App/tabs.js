@@ -1,6 +1,7 @@
 ﻿let webAppContent = document.querySelectorAll(".webApp");
 let mainTabs = document.querySelectorAll("[data-main-tab]");
 let accountModal = document.querySelector("#accountModal");
+let tradeModal = document.getElementById("tradeModal");
 removeAppContent();
 let clickHistory = [];
 for (let i = 0; i < mainTabs.length; i++) {
@@ -15,7 +16,8 @@ for (let i = 0; i < mainTabs.length; i++) {
         event.srcElement.classList.add("mainTabStyle");
         event.srcElement.classList.remove("mainTab");
         if (accountModal.classList.contains("moveUp")) {
-            changeClass("#accountModal", "moveUp", "remove");  
+            changeClass("#accountModal", "moveUp", "remove");
+        } else {
         }
         clickHistory.push(i);
         if (clickHistory.length > 2) {
@@ -70,5 +72,20 @@ function clickTaab() {
         mainTabs[clickHistory[clickHistory.length - 2]].click(); 
     }
 }
- 
- 
+
+//stock analysis modal
+let priceTargetModal = document.querySelector(".priceTargetModal");
+//default state, invisible
+priceTargetModal.style.display = "none";
+//pretty self explanatory
+let hoverButton = document.querySelector(".priceTarget");
+function visible() {
+    priceTargetModal.style.display = "block"
+}
+function invisible() {
+    priceTargetModal.style.display = "none";
+}
+hoverButton.addEventListener('mouseenter', visible);
+hoverButton.addEventListener('mouseleave', invisible);
+priceTargetModal.addEventListener('mouseenter', visible);
+priceTargetModal.addEventListener('mouseleave', invisible);

@@ -2,8 +2,11 @@
 <html>
 <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title></title>
     <link rel="stylesheet" href="StyleSheet.css" />
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
 </head>
 <body>
     <nav class="Tabs">
@@ -13,11 +16,11 @@
             <li class="mainTab" data-main-tab="#MarketsTab"> Markets </li>
             <li class="mainTab" data-main-tab="#EducationTab"> Education </li>
             <li class="mainTab" data-main-tab="#ChatTab"> Chatroom </li>
-            <li class="mainTab" data-main-tab="#MarketsTab"> uv - ∫ dvu dx</li>
+            <li class="mainTab" data-main-tab="#MarketsTab"> uv - ∫ vdu dx</li>
         </ul>
+ 
         <input id="searchbar" type="search" placeholder="🔍 Get Quote" onchange="checkTab()"/>
     </nav>
-
     <div class="webApp" id="MarketsTab">
         <!-- Market Index Tab -->
         <div class="Markets">
@@ -92,6 +95,7 @@
             </div>
         </div>
     </div>
+    <!-- Each individual tab is like it's own separate web-page / project -->
     <div class="webApp" id="WatchlistTab">
 
     </div>
@@ -254,7 +258,7 @@
             <h3> Buy Rating </h3>
             <h3> </h3>
             <h3>Rating Average: </h3>
-            <div class="outerLayer">
+            <div class="outerLayer" id="hoverButton">
                 <div class="rectangle">
                     <div class="line">
 

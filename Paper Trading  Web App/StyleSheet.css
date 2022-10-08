@@ -232,20 +232,21 @@ nav ul {
     margin-bottom: 12px;
     font-weight: 600;
 }
- 
- 
+
+
 #accountModal {
     position: relative;
     z-index: 1;
     height: 920px;
-    top: -30px;
-    transition: top 0.5s;
+    margin-top:-30px;
+    transition: margin-top 0.5s;
     background: #fefefe;
 }
 #accountModal.moveUp {
     position: relative;
-    transition: top 0.5s;
-    top: -870px;
+    z-index: 1;
+    transition: margin-top 0.5s;
+    margin-top: -870px;
 }
 .account h4 {
     margin-left: 20px;
@@ -264,10 +265,16 @@ nav ul {
     position: relative;
     z-index: 2;
     height: 920px;
-    top: -30px;
-    transition: top 0.5s;
+    margin-top: -30px;
+    transition: margin-top 0.5s;
     outline: 2px solid;
     background: #fefefe;
+}
+#tradeModal.moveUpp {
+    z-index: 2;
+    position: relative;
+    transition: 0.7s;
+    margin-top: -1760px;
 }
 .quoteTitle {
     display: flex;
@@ -385,12 +392,21 @@ stockInfo::-webkit-scrollbar-thumb:hover{
 .priceTarget {
     margin-left: 20px;
     margin-top: 20px;
+    width:500px;
 }
-#tradeModal.moveUpp {
+.priceTargetModal {
     position: relative;
-    transition: 0.7s;
-    top: -1790px;
+    outline: 1px solid;
+    height: 320px;
+    width: 300px;
+    left: 306px;
+    bottom: 121px;
+    overflow: hidden;
+    overflow-y: scroll;
+    border-radius: 3%;
+    z-index: 3;
 }
+ 
 .stockLabel {
     display: block;
     margin: 0px 10px 0px 20px;
@@ -425,18 +441,8 @@ stockInfo::-webkit-scrollbar-thumb:hover{
     margin-left: 100px;
     background: black;
 }
-.priceTargetModal {
-    position: relative;
-    outline: 1px solid;
-    height: 320px;
-    width: 300px;
-    left: 306px;
-    bottom: 121px;
-    overflow: hidden;
-    overflow-y: scroll;
-    border-radius: 3%;
-    z-index: 3;
-}
+ 
+ 
 @media(max-width: 1500px) {
     .Markets {
         width: auto;
@@ -472,6 +478,12 @@ stockInfo::-webkit-scrollbar-thumb:hover{
         margin-bottom: 10px;
     }
 }
+@media(max-width: 1130px) {
+    .Tabs {
+        display: flex;
+        height: auto;
+    }
+}
 @media(max-width: 1090px) {
     .Movers {
         margin-left: 20px;
@@ -492,12 +504,12 @@ stockInfo::-webkit-scrollbar-thumb:hover{
  
 }
  
-@media (max-width: 450px) {
+@media (max-width: 576px) {
     .Tabs ul{
         display: block;
     }
     .Tabs {
-        display: block;
+        display: flex;
         height: auto;
     }
 }

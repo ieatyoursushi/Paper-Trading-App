@@ -128,6 +128,8 @@ document.getElementById("searchbar").addEventListener('change', (searchBar) => {
                     if (!tradeModal.classList.contains("moveUpp")) {
                         changeClass("#tradeModal", "moveUpp", 'add')
                     }
+                    let tabss = document.querySelectorAll(".mainTab");
+                    tabss[tabss.length - 1].innerHTML = data[0].price;
                     // trade modal tab
                     quoteContent(data);
                     //stock info / sidebar
