@@ -1,9 +1,9 @@
 ﻿function priceDirection(number) {
     const colors = {
-    lightGreen: "#4EB849",
-     darkGreen: "#18901E",
-     darkRed: "#A00F0A",
-    bloodRed: "#E61018",
+        lightGreen: "#4EB849",
+        darkGreen: "#18901E",
+        darkRed: "#A00F0A",
+        bloodRed: "#E61018",
     }
     if (number > 0 && number <= 0.99) {
         return colors.darkGreen;
@@ -15,4 +15,5 @@
          return colors.bloodRed;
     }
 }
-export {priceDirection}
+export { priceDirection }
+ 
